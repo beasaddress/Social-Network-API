@@ -74,7 +74,7 @@ module.exports = {
 //in the user model
   async addFriend(req, res) {
     try {
-        //might take line 77 out
+        
         const { userId, friendId } = req.body;
 
         const updatedUser = await User.findOneAndUpdate(

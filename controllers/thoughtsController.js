@@ -1,10 +1,13 @@
 const { Thoughts, User, Reactions } = require('../models');
 
+
 module.exports = {
 
   async getThoughts(req, res) {
     try {
-      const thoughts = await Thoughts.find();
+      const thoughts = await Thoughts.find()
+     .populate({ path: 'reactions', select: '-__v'});
+
       res.json(thoughts);
     } catch (err) {
       res.status(500).json(err);
@@ -94,17 +97,18 @@ module.exports = {
   
   async addReaction(req, res) {
     try {
-      const thought = await Thoughts.findOneAndUpdate(
-        { _id: req.params.thoughtId },
+      const { thoughtId, reactionBody } = req.params; //extracting from route params
+      const updatedThought = await Thoughts.findByIdAndUpdate(
+        {_id: thoughtId},
         { $addToSet: { reactions: req.body } },
-        { runValidators: true, new: true }
+        {  new: true }
       );
 
-      if (!thought) {
-        return res.status(404).json({ message: 'No thoughtwith this id!' });
+      if (!updatedThought) {
+        return res.status(404).json({ message: 'No thought with this id!' });
       }
 
-      res.json(thought);
+      res.json(updatedThought);
     } catch (err) {
       res.status(500).json(err);
     }
