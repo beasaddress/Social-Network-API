@@ -75,7 +75,7 @@ module.exports = {
   async addFriend(req, res) {
     try {
         
-        const { userId, friendId } = req.body;
+        const { userId, friendId } = req.params;
 
         const updatedUser = await User.findOneAndUpdate(
             { _id: userId },
@@ -102,7 +102,7 @@ module.exports = {
         //changed findOneAndRemove to FindOneandUpdate because i accidentally deleted a whole user
         const deletedFriend = req.params.friendId;
         const updatedUser = await User.findOneAndUpdate(
-            {_id: req.body.userId },
+            {_id: req.params.userId },
             { $pull: { friends: deletedFriend } },
             { new: true }
         )
