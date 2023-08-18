@@ -1,8 +1,8 @@
 {
-    "name": "Social-Network-API",
+    "name": "project",
     "version": "1.0.0",
     "description": "use and api to communicate w friends",
-    "main": "index.js",
+    "main": "server.js",
     "license": "MIT",
     "scripts": {
       "start": "node index",
