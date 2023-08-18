@@ -68,4 +68,28 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+//might not work since friend is not a model...
+//trying to add a friend object id to the friends field array
+//in the user model
+  async addFriend(req, res) {
+    try {
+        const user = await User.findOneAndUpdate(
+            { _id: req.params.userId},
+            { $addToSet: { friends: user._id } },
+            { new: true}
+        );
+        
+        if(!user) {
+            return res.status(404).json({
+                message: 'no user found'
+            });
+        }
+
+        res.json('Added friend to friends list');
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+  },
+
 };
