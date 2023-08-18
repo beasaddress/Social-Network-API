@@ -100,11 +100,11 @@ module.exports = {
     try {
         //might take this line 100 out
         //changed findOneAndRemove to FindOneandUpdate because i accidentally deleted a whole user
-        const { userId, friendId } = req.body;
+        const deletedFriend = req.params.friendId;
         const updatedUser = await User.findOneAndUpdate(
-            {_id: userId },
-            { $pull: { friends: { friendId: req.params.friendId } } },
-            { runValidators: true, new: true }
+            {_id: req.body.userId },
+            { $pull: { friends: deletedFriend } },
+            { new: true }
         )
         if(!updatedUser) {
             return res.status(404).json({ message: 'No user with this id'});
