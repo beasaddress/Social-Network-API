@@ -80,7 +80,7 @@ module.exports = {
         const updatedUser = await User.findOneAndUpdate(
             { _id: userId },
             { $addToSet: { friends: friendId } },
-            { new: true}
+            { runValidators: true, new: true}
         );
         
         if(!updatedUser) {
