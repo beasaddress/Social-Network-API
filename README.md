@@ -19,7 +19,9 @@ by Beatriz Sandoval ![Github license](https://img.shields.io/badge/license-MIT-y
 
 
 ## Description
-This API provides the back end for a social network application. It holds a User model, a Thought model, and a Reaction schema so that users may join the site, make 'thoughtful' posts to their friends, and they can respond to these thoughts by posting reactions.
+This API provides the back end for a social network application. It holds a User model, a Thought model, and a Reaction schema so that users may join the site, make friends, make 'thoughtful' posts to their friends, and they can respond to these thoughts by posting reactions. 
+Here is a link to a walkthrough video to show how to run this application.
+https://drive.google.com/file/d/1XuOU_iXf9liNWl0GgtDlVlXza28r_ylB/view
 
 ## Installations
 First run 'npm i' in the terminal and then make sure to include express and mongoose as project dependencies.
